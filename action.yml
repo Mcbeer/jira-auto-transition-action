@@ -1,0 +1,28 @@
+name: "Jira Transition"
+description: "Automatically transition Jira tickets based on GitHub events"
+inputs:
+  jira-base-url:
+    description: "Jira base URL (e.g., https://company.atlassian.net)"
+    required: true
+  jira-email:
+    description: "Jira user email"
+    required: true
+  jira-api-token:
+    description: "Jira API token"
+    required: true
+  in-progress-transition-id:
+    description: "Transition ID for In Progress status"
+    required: true
+  under-review-transition-id:
+    description: "Transition ID for Under Review status"
+    required: true
+  done-transition-id:
+    description: "Transition ID for Done status"
+    required: true
+  ticket-pattern:
+    description: "Regex pattern to extract ticket (default: [A-Z]+-[0-9]+)"
+    required: false
+    default: "[A-Z]+-[0-9]+"
+runs:
+  using: "node20"
+  main: "index.mjs"

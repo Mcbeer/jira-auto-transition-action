@@ -2,7 +2,7 @@ import core from "@actions/core";
 import github from "@actions/github";
 import axios from "axios";
 
-async function run() {
+export async function run() {
   try {
     // Get inputs
     const jiraBaseUrl = core.getInput("jira-base-url", { required: true });
@@ -55,7 +55,7 @@ async function run() {
   }
 }
 
-function extractTicketNumber(pattern) {
+export function extractTicketNumber(pattern) {
   const { context } = github;
   let branchName = "";
 
@@ -72,7 +72,7 @@ function extractTicketNumber(pattern) {
   return match ? match[0] : null;
 }
 
-function determineTransition(inProgressId, underReviewId, doneId) {
+export function determineTransition(inProgressId, underReviewId, doneId) {
   const { context } = github;
 
   if (context.eventName === "create" && context.payload.ref_type === "branch") {
@@ -97,7 +97,7 @@ function determineTransition(inProgressId, underReviewId, doneId) {
   return null;
 }
 
-async function updateJiraTicket(
+export async function updateJiraTicket(
   baseUrl,
   email,
   apiToken,
@@ -125,4 +125,7 @@ async function updateJiraTicket(
   }
 }
 
-run();
+// Only run if this file is executed directly (not imported)
+if (import.meta.url === `file://${process.argv[1]}`) {
+  run();
+}

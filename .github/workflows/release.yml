@@ -28,17 +28,15 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Update major version tag
+      - name: Verify build output exists
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          if [ ! -f "dist/index.js" ]; then
+            echo "❌ Build output not found!"
+            exit 1
+          fi
+          echo "✅ Build output verified"
 
-          # Get the release tag
-          TAG=${GITHUB_REF#refs/tags/}
-
-          # Extract major version (e.g., v1.2.3 -> v1)
-          MAJOR_VERSION=$(echo $TAG | cut -d. -f1)
-
-          # Update or create the major version tag
-          git tag -fa $MAJOR_VERSION -m "Update $MAJOR_VERSION tag"
-          git push origin $MAJOR_VERSION --force
+      - name: Success message
+        run: |
+          echo "🎉 Release ${{ github.event.release.tag_name }} published successfully!"
+          echo "Users can now use: uses: ${{ github.repository }}@${{ github.event.release.tag_name }}"

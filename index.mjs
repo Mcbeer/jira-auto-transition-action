@@ -129,3 +129,8 @@ export async function updateJiraTicket(
 if (import.meta.url === `file://${process.argv[1]}`) {
   run();
 }
+
+// Also run if this is the main module (for bundled environments)
+if (typeof require !== "undefined" && require.main === module) {
+  run();
+}

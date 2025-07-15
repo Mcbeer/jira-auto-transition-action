@@ -36,3 +36,43 @@ jobs:
           under-review-transition-id: "31"
           done-transition-id: "41"
 ```
+
+# Contributing
+
+## Development
+
+1. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. Run tests:
+
+   ```bash
+   npm test
+   npm run test:watch  # Watch mode
+   npm run test:coverage  # With coverage
+   ```
+
+3. Build the action:
+   ```bash
+   npm run build
+   npm run build:watch  # Watch mode
+   ```
+
+## Before committing
+
+Make sure to:
+
+1. Run tests: `npm test`
+2. Build the action: `npm run build`
+3. Commit both source and built files
+
+The CI will verify that the built output matches what's committed.
+
+## Release Process
+
+1. Create a new release on GitHub with a semantic version tag (e.g., `v1.2.3`)
+2. The release workflow will automatically update the major version tag (e.g., `v1`)
+3. Users can reference either the specific version (`v1.2.3`) or the major version (`v1`)

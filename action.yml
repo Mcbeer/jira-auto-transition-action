@@ -25,4 +25,4 @@ inputs:
     default: "[A-Z]+-[0-9]+"
 runs:
   using: "node20"
-  main: "index.mjs"
+  main: "dist/index.js"

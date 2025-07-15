@@ -1,7 +1,24 @@
-.env*
-
+# Dependencies
 node_modules/
-.DS_Store
-.vscode/
-dist/
+
+# Coverage
 coverage/
+
+# Environment
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Keep dist/ for GitHub Actions
+# dist/

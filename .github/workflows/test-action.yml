@@ -1,0 +1,19 @@
+# .github/workflows/test-action.yml
+name: Test Jira Action
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test Action
+        uses: ./
+        with:
+          jira-base-url: "https://test.atlassian.net"
+          jira-email: "test@example.com"
+          jira-api-token: "fake-token"
+          in-progress-transition-id: "1"
+          under-review-transition-id: "2"
+          done-transition-id: "3"
